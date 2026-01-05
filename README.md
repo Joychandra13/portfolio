@@ -1,4 +1,4 @@
-# Simon Doe - Portfolio Website
+# Portfolio Website
 
 A modern, responsive portfolio website built with React.js, Vite, and Framer Motion animations.
 
