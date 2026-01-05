@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import { SectionHeader, AnimatedSection, ProjectCard } from './ui'
 
 const Portfolio = () => {
@@ -47,13 +48,18 @@ const Portfolio = () => {
         level={2}
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-stretch">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3, duration: 0.6 }}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-stretch"
+      >
         {projects.map((project, index) => (
           <AnimatedSection.Item key={index} delay={index * 0.1} className="h-full">
             <ProjectCard {...project} />
           </AnimatedSection.Item>
         ))}
-      </div>
+      </motion.div>
     </AnimatedSection>
   )
 }

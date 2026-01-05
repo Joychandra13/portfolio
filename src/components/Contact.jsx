@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 import { 
   Button, 
   Card, 
@@ -55,11 +56,19 @@ const Contact = () => {
           <Card background="base-200" className="h-full">
             <Card.Body className="p-8">
               <Card.Title className="text-2xl mb-6">Send Me a Message</Card.Title>
-              <form
+              <motion.form
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
                 onSubmit={handleSubmit}
                 className="space-y-6"
               >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <motion.div 
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4, duration: 0.4 }}
+                  className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                >
                   <Input
                     label="Name"
                     id="name"
@@ -79,69 +88,98 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                   />
-                </div>
-                <Input.Select
-                  label="Subject"
-                  id="subject"
-                  name="subject"
-                  options={subjectOptions}
-                  value={formData.subject}
-                  onChange={handleChange}
-                />
-                <Input.Textarea
-                  label="Message"
-                  id="message"
-                  name="message"
-                  placeholder="Tell me about your project, requirements, timeline, and budget..."
-                  rows={6}
-                  required
-                  value={formData.message}
-                  onChange={handleChange}
-                />
-                <Button
-                  type="submit"
-                  variant="primary"
-                  size="lg"
-                  icon={<FaPaperPlane />}
-                  className="w-full md:w-auto"
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.5, duration: 0.4 }}
                 >
-                  Send Message
-                </Button>
-              </form>
+                  <Input.Select
+                    label="Subject"
+                    id="subject"
+                    name="subject"
+                    options={subjectOptions}
+                    value={formData.subject}
+                    onChange={handleChange}
+                  />
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.6, duration: 0.4 }}
+                >
+                  <Input.Textarea
+                    label="Message"
+                    id="message"
+                    name="message"
+                    placeholder="Tell me about your project, requirements, timeline, and budget..."
+                    rows={6}
+                    required
+                    value={formData.message}
+                    onChange={handleChange}
+                  />
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7, duration: 0.4 }}
+                >
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    size="lg"
+                    icon={<FaPaperPlane />}
+                    className="w-full md:w-auto"
+                  >
+                    Send Message
+                  </Button>
+                </motion.div>
+              </motion.form>
             </Card.Body>
           </Card>
         </AnimatedSection.Item>
 
         <AnimatedSection.Item className="lg:col-span-1">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          >
             <ContactInfo />
-            <Card background="base-200" hover={true} className="h-full">
-              <Card.Body className="p-6 text-center">
-                <Card.Title className="text-xl mb-4 flex items-center justify-center gap-2">
-                  <span>🌐</span>
-                  Follow Me
-                </Card.Title>
-                <p className="text-base-content/70 text-sm mb-6 leading-relaxed">
-                  Stay connected and follow my journey as a frontend developer. 
-                  Let's connect on social media!
-                </p>
-                <SocialLinks 
-                  variant="circle" 
-                  size="md"
-                  className="justify-center"
-                />
-                <div className="mt-6 pt-4 border-t border-base-300">
-                  <p className="text-xs text-base-content/60">
-                    Available for freelance projects
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.6, duration: 0.5 }}
+            >
+              <Card background="base-200" hover={true} className="h-full">
+                <Card.Body className="p-6 text-center">
+                  <Card.Title className="text-xl mb-4 flex items-center justify-center gap-2">
+                    <span>🌐</span>
+                    Follow Me
+                  </Card.Title>
+                  <p className="text-base-content/70 text-sm mb-6 leading-relaxed">
+                    Stay connected and follow my journey as a frontend developer. 
+                    Let's connect on social media!
                   </p>
-                  <div className="flex items-center justify-center gap-2 mt-2">
-                    <div className="w-2 h-2 bg-success rounded-full animate-pulse"></div>
-                    <span className="text-sm text-success font-medium">Online</span>
+                  <SocialLinks 
+                    variant="circle" 
+                    size="md"
+                    className="justify-center"
+                  />
+                  <div className="mt-6 pt-4 border-t border-base-300">
+                    <p className="text-xs text-base-content/60">
+                      Available for freelance projects
+                    </p>
+                    <div className="flex items-center justify-center gap-2 mt-2">
+                      <div className="w-2 h-2 bg-success rounded-full animate-pulse"></div>
+                      <span className="text-sm text-success font-medium">Online</span>
+                    </div>
                   </div>
-                </div>
-              </Card.Body>
-            </Card>
-          </div>
+                </Card.Body>
+              </Card>
+            </motion.div>
+          </motion.div>
         </AnimatedSection.Item>
       </div>
     </AnimatedSection>

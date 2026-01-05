@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import AnimatedSection from './ui/AnimatedSection'
 import { SectionHeader, Button } from './ui'
 import { FaDownload, FaBriefcase, FaGraduationCap, FaLaptop, FaTrophy, FaGlobe } from 'react-icons/fa'
@@ -122,25 +123,41 @@ const Resume = () => {
         className="mb-8"
       />
 
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+        className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8"
+      >
         <div className="flex-1">
-          <div className="flex items-center gap-3 mb-6">
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3, duration: 0.4 }}
+            className="flex items-center gap-3 mb-6"
+          >
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
                 <FaBriefcase className="text-lg sm:text-xl" />
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-base-content">Work Experience</h3>
-            </div>
+            </motion.div>
         </div>
-        <Button
-          variant="primary"
-          size="lg"
-          icon={<FaDownload />}
-          href="#"
-          className="w-full sm:w-auto"
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.4, duration: 0.4 }}
         >
-          Download PDF
-        </Button>
-      </div>
+          <Button
+            variant="primary"
+            size="lg"
+            icon={<FaDownload />}
+            href="#"
+            className="w-full sm:w-auto"
+          >
+            Download PDF
+          </Button>
+        </motion.div>
+      </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10">
         {/* Left Column (Timeline Content) */}
@@ -149,9 +166,21 @@ const Resume = () => {
           <AnimatedSection.Item>
             <div className="card bg-base-200 shadow-lg">
               <div className="card-body p-4 sm:p-6">
-                <div className="space-y-6">
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.4 }}
+                  className="space-y-6"
+                >
                   {workExperience.map((job, index) => (
-                    <div key={index} className={`${index !== 0 ? 'pt-6 border-t border-base-300' : ''}`}>
+                    <motion.div 
+                      key={index} 
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.6 + index * 0.1, duration: 0.4 }}
+                      whileHover={{ scale: 1.02, x: 4 }}
+                      className={`${index !== 0 ? 'pt-6 border-t border-base-300' : ''}`}
+                    >
                       <div className="flex flex-col gap-2 mb-3">
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
                           <h4 className="font-bold text-base sm:text-lg text-base-content leading-tight">{job.title}</h4>
@@ -178,26 +207,43 @@ const Resume = () => {
                           </div>
                         ))}
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
-                </div>
+                </motion.div>
               </div>
             </div>
           </AnimatedSection.Item>
 
           {/* Education Section */}
           <AnimatedSection.Item>
-            <div className="flex items-center gap-3 mb-6">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.7, duration: 0.5 }}
+              className="flex items-center gap-3 mb-6"
+            >
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
                 <FaGraduationCap className="text-lg sm:text-xl" />
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-base-content">Education</h3>
-            </div>
-            <div className="card bg-base-200 shadow-lg">
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.5 }}
+              className="card bg-base-200 shadow-lg"
+            >
               <div className="card-body p-4 sm:p-6">
                 <div className="space-y-6">
                   {education.map((edu, index) => (
-                    <div key={index} className={`${index !== 0 ? 'pt-6 border-t border-base-300' : ''}`}>
+                    <motion.div 
+                      key={index} 
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.9 + index * 0.1, duration: 0.4 }}
+                      whileHover={{ scale: 1.02, x: 4 }}
+                      className={`${index !== 0 ? 'pt-6 border-t border-base-300' : ''}`}
+                    >
                       <div className="flex flex-col gap-2 mb-2">
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
                           <h4 className="font-bold text-base sm:text-lg text-base-content leading-tight">{edu.degree}</h4>
@@ -210,11 +256,11 @@ const Resume = () => {
                       <p className="text-base-content/70 text-xs sm:text-sm leading-relaxed">
                         {edu.description}
                       </p>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           </AnimatedSection.Item>
         </div>
 

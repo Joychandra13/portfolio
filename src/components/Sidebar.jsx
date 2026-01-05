@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import { Image, Button } from './ui'
 import { 
   FaUser, 
@@ -72,14 +73,30 @@ const Sidebar = ({ darkMode, toggleDarkMode }) => {
   }, [])
 
   return (
-    <aside className="w-full md:w-72 bg-primary text-primary-content flex flex-col shrink-0 h-[100vh] md:h-screen md:sticky md:top-0 overflow-y-auto no-scrollbar">
+    <motion.aside 
+      initial={{ x: -300, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="w-full md:w-72 bg-primary text-primary-content flex flex-col shrink-0 h-[100vh] md:h-screen md:sticky md:top-0 overflow-y-auto no-scrollbar"
+    >
       {/* Profile Section */}
-      <div className="flex flex-col items-center p-8 text-center border-b border-primary-content/10">
-        <h1 className="text-2xl md:text-3xl font-black mb-4 leading-tight hover:scale-105 transition-transform duration-200">
+      <motion.div 
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+        className="flex flex-col items-center p-8 text-center border-b border-primary-content/10"
+      >
+        <motion.h1 
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.4 }}
+          whileHover={{ scale: 1.05 }}
+          className="text-2xl md:text-3xl font-black mb-4 leading-tight transition-transform duration-200"
+        >
           Joy
-        </h1>
+        </motion.h1>
         
-        <div className="mb-4 hover:scale-105 transition-transform duration-300">
+        <div className="mb-4">
           <Image
             src="https://ik.imagekit.io/joy1414/Green%20White%20Modern%20Business%20LinkedIn%20Profile%20Picture%20(3).png"
             alt="Profile Picture of Joy, Frontend Developer and MERN Stack Student"
@@ -90,15 +107,30 @@ const Sidebar = ({ darkMode, toggleDarkMode }) => {
           />
         </div>
         
-        <p className="text-sm opacity-90 leading-relaxed mb-6 max-w-xs">
+        <motion.p 
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.4 }}
+          className="text-sm opacity-90 leading-relaxed mb-6 max-w-xs"
+        >
           Hi, I'm Joy, a frontend developer and MERN stack student. Welcome to my portfolio!
-        </p>
+        </motion.p>
         
-        <div className="flex space-x-2 justify-center mb-2">
+        <motion.div 
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.6, duration: 0.4 }}
+          className="flex space-x-2 justify-center mb-2"
+        >
           {socialLinks.map((link, index) => (
-            <a
+            <motion.a
               key={index}
-              className={`btn btn-ghost btn-circle btn-sm transition-all duration-200 hover:scale-110 hover:-translate-y-0.5 active:scale-95 ${link.color}`}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.7 + index * 0.1, duration: 0.3 }}
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className={`btn btn-ghost btn-circle btn-sm transition-all duration-200 active:scale-95 ${link.color}`}
               href={link.href}
               aria-label={link.label}
               target={link.href.startsWith('http') ? '_blank' : '_self'}
@@ -106,18 +138,30 @@ const Sidebar = ({ darkMode, toggleDarkMode }) => {
               onClick={link.href.startsWith('#') ? (e) => handleNavClick(e, link.href) : undefined}
             >
               {link.icon}
-            </a>
+            </motion.a>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Navigation Menu */}
-      <nav className="flex-1 w-full px-4 py-6">
+      <motion.nav 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8, duration: 0.5 }}
+        className="flex-1 w-full px-4 py-6"
+      >
         <ul className="menu menu-vertical w-full space-y-2">
           {navItems.map((item, index) => (
-            <li key={index}>
-              <a
-                className={`flex items-center space-x-3 rounded-lg p-3 cursor-pointer transition-all duration-200 hover:translate-x-1 hover:bg-primary-content/10 active:scale-98 ${
+            <motion.li 
+              key={index}
+              initial={{ x: -50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.9 + index * 0.1, duration: 0.4 }}
+            >
+              <motion.a
+                whileHover={{ x: 4, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`flex items-center space-x-3 rounded-lg p-3 cursor-pointer transition-all duration-200 hover:bg-primary-content/10 ${
                   activeSection === item.id 
                     ? 'bg-primary-content/20 text-primary-content' 
                     : ''
@@ -129,14 +173,19 @@ const Sidebar = ({ darkMode, toggleDarkMode }) => {
                   {item.icon}
                 </span>
                 <span className="font-medium">{item.text}</span>
-              </a>
-            </li>
+              </motion.a>
+            </motion.li>
           ))}
         </ul>
-      </nav>
+      </motion.nav>
 
       {/* Action Section */}
-      <div className="p-6 mt-auto space-y-6 border-t border-primary-content/10">
+      <motion.div 
+        initial={{ y: 50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.5 }}
+        className="p-6 mt-auto space-y-6 border-t border-primary-content/10"
+      >
         <Button
           variant="outline"
           fullWidth={true}
@@ -152,15 +201,16 @@ const Sidebar = ({ darkMode, toggleDarkMode }) => {
             <FaAdjust className="mr-2" />
             Dark Mode
           </span>
-          <input
+          <motion.input
+            whileTap={{ scale: 0.95 }}
             type="checkbox"
-            className="toggle toggle-sm border-none toggle-accent active:scale-95 transition-transform"
+            className="toggle toggle-sm border-none toggle-accent transition-transform"
             checked={darkMode}
             onChange={toggleDarkMode}
           />
         </div>
-      </div>
-    </aside>
+      </motion.div>
+    </motion.aside>
   )
 }
 

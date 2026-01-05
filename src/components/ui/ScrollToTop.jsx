@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { FaArrowUp } from 'react-icons/fa'
 import Button from './Button'
 
@@ -29,25 +30,29 @@ const ScrollToTop = ({
     })
   }
 
-  if (!isVisible) return null
-
   return (
-    <div
-      className={`fixed bottom-8 right-8 z-50 transition-all duration-300 ${
-        isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
-      } ${className}`}
-      {...props}
-    >
-      <Button
-        variant="primary"
-        size="lg"
-        onClick={scrollToTop}
-        className="btn-circle shadow-lg hover:shadow-xl transition-shadow duration-300"
-        aria-label="Scroll to top"
-      >
-        <FaArrowUp className="text-lg" />
-      </Button>
-    </div>
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0 }}
+          transition={{ duration: 0.3 }}
+          className={`fixed bottom-8 right-8 z-50 ${className}`}
+          {...props}
+        >
+          <Button
+            variant="primary"
+            size="lg"
+            onClick={scrollToTop}
+            className="btn-circle shadow-lg hover:shadow-xl transition-shadow duration-300"
+            aria-label="Scroll to top"
+          >
+            <FaArrowUp className="text-lg" />
+          </Button>
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }
 

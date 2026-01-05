@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Card from './Card'
+import { IoCallOutline } from 'react-icons/io5'
 
 const ContactInfo = ({ 
   info = [],
@@ -9,21 +10,18 @@ const ContactInfo = ({
 }) => {
   const defaultInfo = [
     {
-      icon: 'fas fa-envelope',
       title: 'Email',
-      value: 'simon.doe@example.com',
-      href: 'mailto:simon.doe@example.com'
+      value: 'joychandra1414@gmail.com',
+      href: 'mailto:joychandra1414@gmail.com'
     },
     {
-      icon: 'fas fa-phone-alt',
       title: 'Phone',
-      value: '+1 (234) 567-890',
-      href: 'tel:+1234567890'
+      value: '+8801709879535',
+      href: 'tel:+8801709879535'
     },
     {
-      icon: 'fas fa-map-marker-alt',
       title: 'Location',
-      value: 'San Francisco, CA',
+      value: 'Tangail, Dhaka, Bangaladesh',
       href: null
     }
   ]
@@ -49,9 +47,6 @@ const ContactInfo = ({
               transition={{ duration: 0.2 }}
               className="flex items-center gap-4 p-3 rounded-lg hover:bg-base-100/50 transition-colors"
             >
-              <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
-                <i className={`${item.icon} text-lg`}></i>
-              </div>
               <div className="flex-grow">
                 <h4 className="font-semibold text-base md:text-lg text-base-content mb-1">
                   {item.title}

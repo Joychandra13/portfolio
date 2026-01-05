@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import Button from './Button'
 import { FaLinkedinIn, FaGithub, FaWhatsapp } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
@@ -46,12 +47,23 @@ const SocialLinks = ({
   }
   
   return (
-    <div 
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
       className={`flex ${showLabels ? 'flex-col gap-3' : 'gap-3 justify-center'} ${className}`}
       {...props}
     >
       {socialLinks.map((link, index) => (
-        <div key={index} className="transition-all duration-300 hover:scale-110">
+        <motion.div 
+          key={index} 
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: index * 0.1, duration: 0.3, type: "spring", stiffness: 200 }}
+          whileHover={{ scale: 1.1, y: -2 }}
+          whileTap={{ scale: 0.95 }}
+          className="transition-all duration-300"
+        >
           <Button
             variant="ghost"
             size={size}
@@ -66,9 +78,9 @@ const SocialLinks = ({
             </span>
             {showLabels && <span className="font-medium">{link.label}</span>}
           </Button>
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   )
 }
 

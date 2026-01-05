@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 
 const Card = ({ 
   children, 
@@ -45,15 +46,21 @@ const Card = ({
   
   const cardClasses = `${baseClasses} ${backgroundClasses[background]} ${shadowClasses[shadow]} ${sizeClasses[size]} ${
     aspectRatio ? aspectRatioClasses[aspectRatio] : ''
-  } ${hover ? 'hover:-translate-y-0.5 hover:scale-101' : ''} ${className}`
+  } ${className}`
+  
+  const hoverProps = hover ? {
+    whileHover: { y: -2, scale: 1.01 },
+    transition: { duration: 0.2 }
+  } : {}
   
   return (
-    <div 
+    <motion.div 
       className={cardClasses}
+      {...hoverProps}
       {...props}
     >
       {children}
-    </div>
+    </motion.div>
   )
 }
 

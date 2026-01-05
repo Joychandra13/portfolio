@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 
 const Button = ({ 
   children, 
@@ -15,7 +16,7 @@ const Button = ({
   fullWidth = false,
   ...props 
 }) => {
-  const baseClasses = 'btn transition-all duration-200 hover:scale-105 active:scale-95'
+  const baseClasses = 'btn transition-all duration-200'
   
   const variants = {
     primary: 'btn-primary',
@@ -40,6 +41,9 @@ const Button = ({
   } ${disabled ? 'btn-disabled' : ''} ${className}`
   
   const buttonProps = {
+    whileHover: disabled ? {} : { scale: 1.05, y: -2 },
+    whileTap: disabled ? {} : { scale: 0.95 },
+    transition: { duration: 0.2 },
     className: buttonClasses,
     disabled: disabled || loading,
     ...props
@@ -66,7 +70,7 @@ const Button = ({
   
   if (href && !disabled) {
     return (
-      <a 
+      <motion.a 
         href={href} 
         {...buttonProps}
         onClick={(e) => {
@@ -85,14 +89,14 @@ const Button = ({
         }}
       >
         {renderContent()}
-      </a>
+      </motion.a>
     )
   }
   
   return (
-    <button type={type} onClick={onClick} {...buttonProps}>
+    <motion.button type={type} onClick={onClick} {...buttonProps}>
       {renderContent()}
-    </button>
+    </motion.button>
   )
 }
 
