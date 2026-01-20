@@ -51,8 +51,8 @@ const Contact = () => {
         />
       </AnimatedSection.Item>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <AnimatedSection.Item className="lg:col-span-1">
+      <div className="grid grid-cols-1 gap-8">
+        {/* <AnimatedSection.Item className="lg:col-span-1">
           <Card background="base-200" className="h-full">
             <Card.Body className="p-8">
               <Card.Title className="text-2xl mb-6">Send Me a Message</Card.Title>
@@ -137,20 +137,21 @@ const Contact = () => {
               </motion.form>
             </Card.Body>
           </Card>
-        </AnimatedSection.Item>
+        </AnimatedSection.Item> */}
 
-        <AnimatedSection.Item className="lg:col-span-1">
+        <AnimatedSection.Item className="col-span-1">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6"
           >
-            <ContactInfo />
+            <ContactInfo className="col-span-1"/>
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.6, duration: 0.5 }}
+              className="col-span-1"
             >
               <Card background="base-200" hover={true} className="h-full">
                 <Card.Body className="p-6 text-center">

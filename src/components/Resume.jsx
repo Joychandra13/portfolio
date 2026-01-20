@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import AnimatedSection from './ui/AnimatedSection'
 import { SectionHeader, Button } from './ui'
 import { FaDownload, FaBriefcase, FaGraduationCap, FaLaptop, FaTrophy, FaGlobe } from 'react-icons/fa'
+import { LiaCertificateSolid } from 'react-icons/lia'
 
 const Resume = () => {
   const workExperience = [
@@ -96,19 +97,19 @@ const Resume = () => {
     {
       title: 'WordPress & E-Commerce Course',
       organization: 'CodemanBD • Aug 2024',
-      icon: <FaTrophy className="text-xl" />,
+      icon: <LiaCertificateSolid className="text-xl" />,
       color: 'warning'
     },
     {
       title: 'Semrush SEO Toolkit Course',
       organization: 'Semrush • Jan 2024',
-      icon: <FaTrophy className="text-xl" />,
+      icon: <LiaCertificateSolid className="text-xl" />,
       color: 'info'
     },
     {
       title: 'Wix & Squarespace Course',
       organization: 'CodemanBD • Sep 2023',
-      icon: <FaTrophy className="text-xl" />,
+      icon: <LiaCertificateSolid className="text-xl" />,
       color: 'warning'
     }
   ]
@@ -151,10 +152,10 @@ const Resume = () => {
             variant="primary"
             size="lg"
             icon={<FaDownload />}
-            href="#"
+            href="https://drive.google.com/file/d/10hQtlyCgdkiyV4XC2OE8hoh6eXbU_pa8/view?usp=drive_link"
             className="w-full sm:w-auto"
           >
-            Download PDF
+            Resume
           </Button>
         </motion.div>
       </motion.div>
@@ -336,7 +337,7 @@ const Resume = () => {
           <AnimatedSection.Item>
             <div className="flex items-center gap-2 mb-4">
               <FaTrophy className="text-primary text-lg sm:text-xl" />
-              <h3 className="text-base sm:text-lg font-bold text-base-content">Achievements</h3>
+              <h3 className="text-base sm:text-lg font-bold text-base-content">Achievements & Certificates</h3>
             </div>
             <div className="space-y-3">
               {achievements.map((achievement, index) => (
